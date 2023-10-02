@@ -22,6 +22,7 @@ public class Sabot implements Iterable<Carte> {
 		if (nbCartes >= cartes.length) 
 			throw new IndexOutOfBoundsException("Sabot plein");
 		cartes[nbCartes++] = carte;
+		pioche.nbCartesRef++;
 	}
 	
 	public void ajouterFamilleCarte(Carte carte) {
@@ -62,11 +63,13 @@ public class Sabot implements Iterable<Carte> {
 		public void remove() {
 			if (nbCartes < 1 || !hasNexted) throw new IllegalStateException();
 			if (nbCartes != nbCartesRef) throw new ConcurrentModificationException();
-			for (int i = position-1; i < nbCartes - 1; i++) {
-				cartes[i] = cartes[i-1];
+			
+			for (int i = position-1; i < nbCartes;i++) {
+				cartes[i] = cartes[i+1];
 			}
 			nbCartesRef-=1;
 			nbCartes -=1;
+			position -=1;
 			hasNexted = false;
 		}
 		

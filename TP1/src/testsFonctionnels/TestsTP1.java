@@ -12,8 +12,9 @@ public class TestsTP1 {
 		TestCartes[2] = new Botte(Probleme.Type.ACCIDENT,2);
 		sabot.ajouterFamilleCarte(TestCartes[0],TestCartes[1],TestCartes[2]);
 		
+		
 		while (!sabot.estVide()) {
-			System.out.println(sabot.piocher());
+			System.out.println(sabot.piocher().ToString());
 		}
 	}
 }
